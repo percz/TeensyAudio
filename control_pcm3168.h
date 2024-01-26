@@ -108,7 +108,7 @@ From SBAS452A –SEPTEMBER 2008–REVISED JANUARY 2016
 
 class AudioControlPCM3168 : public AudioControl
 {
-	const uint8_t I2C_BASE = 0x48;
+	const uint8_t I2C_BASE = 0x44;
 	const int ADC_CHANNELS = 6;
 	const int DAC_CHANNELS = 8;
 	
@@ -124,7 +124,7 @@ class AudioControlPCM3168 : public AudioControl
 	const int AC1_24_BIT_I2S_TDM = 0x06; // ADC_CONTROL_1: set 24-bit I²S mode, TDM format
 					 
 public:
-	AudioControlPCM3168(void) : i2c_addr(I2C_BASE), muted(true) { }
+	AudioControlPCM3168(void) : wire(&Wire), i2c_addr(I2C_BASE), muted(true) { }
 	void setAddress(uint8_t addr) { i2c_addr = I2C_BASE | (addr & 3); }
 	void setWire(TwoWire& w) { wire = &w; }
 	bool enable(void);
